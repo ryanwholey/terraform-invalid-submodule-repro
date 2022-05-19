@@ -31,7 +31,8 @@ resource "kubernetes_cluster_role_binding" "terraform" {
 
 provider "kubernetes" {
   alias = "terraform"
-
+  
+  config_path            = pathexpand("~/.kube/config")
   config_context_cluster = "minikube"
   token                  = data.kubernetes_secret.terraform.data["token"]
 }
